@@ -36,4 +36,8 @@ fun dateFormat(date: String): Date {
 
 fun String?.xmlToJson(): JSONObject = XML.toJSONObject(this)
 
+fun String.truncate(limitLen: Int = 39): String =
+    if (this.length > limitLen) this.substring(0..limitLen) else this
+
+
 

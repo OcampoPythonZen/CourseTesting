@@ -1,8 +1,5 @@
 package com.example.junit5app.example.models
 
-import org.json.JSONObject
-import org.json.XML
-
 private const val PRETTY_PRINT_INDENT_FACTOR: Int = 4
 
 fun main() {

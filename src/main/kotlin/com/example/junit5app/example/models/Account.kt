@@ -4,11 +4,21 @@ data class Account(
     var person: String? = null,
     var amount: Float? = null
 ) {
-    fun debit(amount: Float): Float? {
-        return this.amount?.minus(amount)
+    override fun equals(other: Any?): Boolean {
+        return super.equals(other)
     }
 
-    fun credit(amount: Float): Float? {
-        return this.amount?.minus(amount)
+    fun debit(amountMinus: Float) {
+        this.amount = this.amount?.minus(amountMinus)
+    }
+
+    fun credit(amountMinus: Float) {
+        this.amount = this.amount?.minus(amountMinus)
+    }
+
+    override fun hashCode(): Int {
+        var result = person?.hashCode() ?: 0
+        result = 31 * result + (amount?.hashCode() ?: 0)
+        return result
     }
 }
