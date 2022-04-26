@@ -1,4 +1,4 @@
 package com.example.junit5app.exceptions
 
-class InsufficientCashException {
+class InsufficientCashException(message: String?) : RuntimeException(message) {
 }

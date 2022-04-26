@@ -1,13 +1,19 @@
 package com.example.junit5app.challenge
 
-import com.example.junit5app.example.models.truncate
-
 fun main() {
 
-    val str = "DOLORES HIDALGO CUNA DE LA INDEPENDENCIA NACIONAL"
+    /*val str = "DOLORES HIDALGO CUNA DE LA INDEPENDENCIA NACIONAL"
     println(str)
     val newString = str.truncate()
-    println(newString)
+    println(newString)*/
+
+    val input = readLine()!!.toInt()
+
+    val map = mapOf<String, Any>(
+        "usd_max_amount" to if (input is Int) input.toDouble() else 0.0
+    )
+
+    println(map)
 
 }
 
