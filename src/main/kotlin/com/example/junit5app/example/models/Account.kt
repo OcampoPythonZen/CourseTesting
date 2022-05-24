@@ -2,7 +2,6 @@ package com.example.junit5app.example.models
 
 import com.example.junit5app.exceptions.InsufficientCashException
 
-@Suppress("UNUSED_EXPRESSION")
 data class Account(
     var person: String? = null,
     var amount: Float? = null
@@ -11,14 +10,14 @@ data class Account(
         return super.equals(other)
     }
 
-    fun debit(amountMinus: Float) {
+    fun debit(amountMinus: Float): Float {
         val newAmount = this.amount?.minus(amountMinus)
-        if (newAmount == null || newAmount < 0) throw InsufficientCashException(message = "Insufficient Cash to do the operation.") else newAmount
+        return if (newAmount == null || newAmount < 0) throw InsufficientCashException(message = "Insufficient Cash to do the operation.") else newAmount
     }
 
-    fun credit(amountMinus: Float) {
-        val newAmount = this.amount?.minus(amountMinus)
-        if (newAmount == null || newAmount < 0) throw InsufficientCashException(message = "Insufficient Cash to do the operation.") else newAmount
+    fun credit(plusAmount: Float?): Float {
+        return plusAmount?.let { amount?.plus(it) }
+            ?: throw InsufficientCashException(message = "Insufficient Cash to do the operation.")
     }
 
     override fun hashCode(): Int {

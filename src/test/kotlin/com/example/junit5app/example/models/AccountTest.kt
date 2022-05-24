@@ -93,8 +93,18 @@ internal class AccountTest {
     @Test
     fun `Validation of the insufficient cash on credit card`() {
         val ex = Assertions.assertThrows(InsufficientCashException::class.java) {
-            account.credit(2001F)
+            account.credit(null)
         }
         Assertions.assertEquals("Insufficient Cash to do the operation.", ex.message)
+    }
+
+    @Test
+    fun `Transfer amount between accounts`() {
+        val accountOne = Account("personOne", amount = 1000.0F)
+        val accountTwo = Account("personTwo", amount = 1000.0F)
+        val bank = Bank("Nu Bank CO LT")
+        val response = bank.transfer(origin = accountOne, destiny = accountTwo, 500F)
+        Assertions.assertEquals(500F, response.first)
+        Assertions.assertEquals(1500F, response.second)
     }
 }
